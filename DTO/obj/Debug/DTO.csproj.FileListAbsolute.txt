@@ -1,0 +1,12 @@
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Debug\DTO.dll.config
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Debug\DTO.dll
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Debug\DTO.pdb
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Debug\Entities.dll
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Debug\EntityFramework.dll
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Debug\EntityFramework.SqlServer.dll
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Debug\Entities.pdb
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Debug\EntityFramework.xml
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Debug\EntityFramework.SqlServer.xml
+D:\Personal\My Samples\UseThis\MySamples\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+D:\Personal\My Samples\UseThis\MySamples\DTO\obj\Debug\DTO.dll
+D:\Personal\My Samples\UseThis\MySamples\DTO\obj\Debug\DTO.pdb

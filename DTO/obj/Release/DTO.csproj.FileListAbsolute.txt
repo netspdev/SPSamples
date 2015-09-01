@@ -1,0 +1,11 @@
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Release\DTO.dll.config
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Release\DTO.dll
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Release\DTO.pdb
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Release\Entities.dll
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Release\EntityFramework.dll
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Release\EntityFramework.SqlServer.dll
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Release\EntityFramework.xml
+D:\Personal\My Samples\UseThis\MySamples\DTO\bin\Release\EntityFramework.SqlServer.xml
+D:\Personal\My Samples\UseThis\MySamples\DTO\obj\Release\DTO.csprojResolveAssemblyReference.cache
+D:\Personal\My Samples\UseThis\MySamples\DTO\obj\Release\DTO.dll
+D:\Personal\My Samples\UseThis\MySamples\DTO\obj\Release\DTO.pdb

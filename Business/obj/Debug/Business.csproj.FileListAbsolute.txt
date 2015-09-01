@@ -1,0 +1,17 @@
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\AutoMapper.Net4.dll
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\Business.dll.config
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\Business.dll
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\Business.pdb
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\AutoMapper.dll
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\DTO.dll
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\Entities.dll
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\EntityFramework.dll
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\EntityFramework.SqlServer.dll
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\DTO.pdb
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\Entities.pdb
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\AutoMapper.xml
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\EntityFramework.xml
+D:\Personal\My Samples\UseThis\MySamples\Business\bin\Debug\EntityFramework.SqlServer.xml
+D:\Personal\My Samples\UseThis\MySamples\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
+D:\Personal\My Samples\UseThis\MySamples\Business\obj\Debug\Business.dll
+D:\Personal\My Samples\UseThis\MySamples\Business\obj\Debug\Business.pdb

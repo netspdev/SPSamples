@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="Employees" id="employeeList">
+    <div class="row">
+        <div class="col-md-1 col-md-offset-0">
+            <h4>Id</h4>
+        </div>
+        <div class="col-md-2 col-md-offset-0">
+            <h4>Email</h4>
+        </div>
+        <div class="col-md-3">
+            <h4>First Name</h4>
+        </div>
+        <div class="col-md-4">
+            <h4>Last Name</h4>
+        </div>
+    </div>
+    <div class="row" ng-repeat="employee in EmployeeList">
+        <div class="col-md-1 col-md-offset-0">
+            <label>{{employee.id}}</label>
+        </div>
+        <div class="col-md-2 col-md-offset-0">
+            <input type="text" ng-model="employee.email" class="form-control"/>
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" ng-model="employee.firstName" />
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-8 col-md-offset-0">
+                <input type="text" ng-model="employee.lastName" class="form-control" />
+            </div>
+            <div class="col-md-1" ng-if="employee.id > 0">
+                <input type="button" id="updateEmployee{{employee.id}}" class="btn btn-sm btn-default" value="Update" ng-click="UpdateEmployee(employee)"/>
+            </div>
+            <div class="col-md-1" ng-if="employee.id == null">
+                <input type="button" class="btn btn-sm btn-default" value="Add" ng-click="AddEmployee(employee)" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <input type="button" id="refreshEmployees" class="btn btn-sm btn-default" value="Refresh" ng-click="GetEmployees()" />
+    </div>
+</div>

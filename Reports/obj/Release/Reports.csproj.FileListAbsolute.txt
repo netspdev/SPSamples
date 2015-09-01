@@ -1,0 +1,11 @@
+D:\Personal\My Samples\UseThis\MySamples\Reports\bin\Release\Reports.exe.config
+D:\Personal\My Samples\UseThis\MySamples\Reports\bin\Release\Reports.exe
+D:\Personal\My Samples\UseThis\MySamples\Reports\bin\Release\Reports.pdb
+D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Release\Reports.csprojResolveAssemblyReference.cache
+D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Release\Reports.Form1.resources
+D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Release\Reports.Properties.Resources.resources
+D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Release\Reports.csproj.GenerateResource.Cache
+D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Release\RdlCompile.cache
+D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Release\RdlCompile.compiled
+D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Release\Reports.exe
+D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Release\Reports.pdb

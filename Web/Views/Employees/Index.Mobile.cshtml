@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Mobile view</h3>
+<div ng-controller="Employees">
+    <ul>
+        <li ng-repeat="employee in EmployeeList">
+            <div>
+                <label>{{employee.id}}</label>
+                <label>{{employee.email}}</label>
+                <input type="text" ng-model="employee.firstName" />
+                <input type="text" ng-model="employee.lastName" onchange="angular.element(this).scope().UpdateEmployee({{employee}})" />
+            </div>
+        </li>
+    </ul>
+</div>
