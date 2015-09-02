@@ -16,48 +16,49 @@ namespace Web.Controllers
            this._context = employeeService;
        }
 
-       public IQueryable<Employee> GetEmployees()
-       {
-           return this._context.GetEmployees();
-       }
+        // GET: Employees
+        public ActionResult Index()
+        {
+            return View();
+        }
 
-       //public async Task<IHttpActionResult> Post(Employee employee)
-       //{
-       //    if (!ModelState.IsValid)
-       //    {
-       //        return this.BadRequest(this.ModelState);
-       //    }
-
-
-       //    var result = await this.StoreAsync(employee);
-       //    return this.Ok<Employee>(result);
-       //}
-
-       //public async Task<IHttpActionResult> Delete(Employee employee)
-       //{
-       //    if (!ModelState.IsValid)
-       //    {
-       //        return this.BadRequest(this.ModelState);
-       //    }
+        //public async Task<IHttpActionResult> Post(Employee employee)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return this.BadRequest(this.ModelState);
+        //    }
 
 
-       //    var result = await this.DeleteAsync(employee);
-       //    return this.Ok<bool>(result);
-       //}
+        //    var result = await this.StoreAsync(employee);
+        //    return this.Ok<Employee>(result);
+        //}
 
-       //public async Task<IHttpActionResult> Patch(Employee employee)
-       //{
-       //    if (!ModelState.IsValid)
-       //    {
-       //        return this.BadRequest(this.ModelState);
-       //    }
+        //public async Task<IHttpActionResult> Delete(Employee employee)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return this.BadRequest(this.ModelState);
+        //    }
 
 
-       //    var result = await this._context.Update(employee);
-       //    return this.Ok<Employee>(result);
-       //}
+        //    var result = await this.DeleteAsync(employee);
+        //    return this.Ok<bool>(result);
+        //}
 
-       private async Task<Employee> StoreAsync(Employee employee)
+        //public async Task<IHttpActionResult> Patch(Employee employee)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return this.BadRequest(this.ModelState);
+        //    }
+
+
+        //    var result = await this._context.Update(employee);
+        //    return this.Ok<Employee>(result);
+        //}
+
+        private async Task<Employee> StoreAsync(Employee employee)
        {
            var result = await this._context.Add(employee);
 

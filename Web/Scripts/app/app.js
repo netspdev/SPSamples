@@ -50,19 +50,19 @@ angular.element(document).ready(function () {
     delete $http.defaults.headers.common['X-Requested-With'];
     //$http.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     $http.defaults.headers.common["Origin"] = '*';
-    $http.get('http://l3.quill.com/api/PNI/TestHeader').
-   success(function (data, status, headers, config) {
-       data = data.replace(new RegExp('href="/', 'g'), 'href="http://l3.quill.com/');
-       data = data.replace(new RegExp('src="/', 'g'), 'src="http://l3.quill.com/');
-       jQuery('#QuillPlaceHolder').html(data);
-       // this callback will be called asynchronously
-       // when the response is available
-   }).
-   error(function (data, status, headers, config) {
-       console.log(status);
-       // called asynchronously if an error occurs
-       // or server returns response with an error status.
-   });
+   // $http.get('http://l3.quill.com/api/PNI/TestHeader').
+   //success(function (data, status, headers, config) {
+   //    data = data.replace(new RegExp('href="/', 'g'), 'href="http://l3.quill.com/');
+   //    data = data.replace(new RegExp('src="/', 'g'), 'src="http://l3.quill.com/');
+   //    jQuery('#QuillPlaceHolder').html(data);
+   //    // this callback will be called asynchronously
+   //    // when the response is available
+   //}).
+   //error(function (data, status, headers, config) {
+   //    console.log(status);
+   //    // called asynchronously if an error occurs
+   //    // or server returns response with an error status.
+   //});
     //var request = $http({
     //    url: "http://l3.quill.com/api/PNI/TestHeader"
     //});

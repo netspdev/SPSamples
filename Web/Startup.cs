@@ -22,7 +22,7 @@ namespace Web
             var builder = new ContainerBuilder();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>().InstancePerRequest();
+            builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>();
             //...
             var container = builder.Build();
             //var config = GlobalConfiguration.Configuration;

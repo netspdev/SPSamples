@@ -8,3 +8,14 @@ D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Debug\RdlCompile.cache
 D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Debug\RdlCompile.compiled
 D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Debug\Reports.exe
 D:\Personal\My Samples\UseThis\MySamples\Reports\obj\Debug\Reports.pdb
+D:\Personal\My Samples\UseThis\SPSamples\Reports\bin\Debug\Reports.exe.config
+D:\Personal\My Samples\UseThis\SPSamples\Reports\bin\Debug\Reports.exe
+D:\Personal\My Samples\UseThis\SPSamples\Reports\bin\Debug\Reports.pdb
+D:\Personal\My Samples\UseThis\SPSamples\Reports\obj\Debug\Reports.csprojResolveAssemblyReference.cache
+D:\Personal\My Samples\UseThis\SPSamples\Reports\obj\Debug\Reports.Form1.resources
+D:\Personal\My Samples\UseThis\SPSamples\Reports\obj\Debug\Reports.Properties.Resources.resources
+D:\Personal\My Samples\UseThis\SPSamples\Reports\obj\Debug\Reports.csproj.GenerateResource.Cache
+D:\Personal\My Samples\UseThis\SPSamples\Reports\obj\Debug\RdlCompile.cache
+D:\Personal\My Samples\UseThis\SPSamples\Reports\obj\Debug\RdlCompile.compiled
+D:\Personal\My Samples\UseThis\SPSamples\Reports\obj\Debug\Reports.exe
+D:\Personal\My Samples\UseThis\SPSamples\Reports\obj\Debug\Reports.pdb

@@ -24,11 +24,11 @@ namespace Web.Tests
 
 
             var controller = new EmployeesController(employeeRepository.Object);
-            Assert.AreEqual(3, controller.GetEmployees().Where(x => x.Email == "first@lastemail.com").Count());
+            //Assert.AreEqual(3, controller.GetEmployees().Where(x => x.Email == "first@lastemail.com").Count());
 
             //EmployeeDBContext context = new EmployeeDBContext();
 
-            //Assert.AreEqual(true, context.Employees.Count() > 0);
+            Assert.AreEqual(true, controller.GetEmployees().Count() > 0);
         }
     }
 }
