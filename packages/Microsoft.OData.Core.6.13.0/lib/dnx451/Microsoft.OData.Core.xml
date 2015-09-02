@@ -1766,6 +1766,11 @@
             </summary>
             <returns>true if next node was available; false if end of the attribute value was reached.</returns>
         </member>
+        <member name="M:Microsoft.OData.Core.Atom.BufferingXmlReader.Close">
+            <summary>
+            Closes the reader and the underlying input.
+            </summary>
+        </member>
         <member name="M:Microsoft.OData.Core.Atom.BufferingXmlReader.GetAttribute(System.Int32)">
             <summary>
             Returns the value of an attribute based on its index.
@@ -2238,6 +2243,12 @@
             </summary>
             <param name="name">The name to write. </param><exception cref="T:System.ArgumentException">
             <paramref name="name"/> is not a valid NmToken; or <paramref name="name"/> is either null or String.Empty. </exception>
+        </member>
+        <member name="M:Microsoft.OData.Core.Atom.DefaultNamespaceCompensatingXmlWriter.Close">
+            <summary>
+            When overridden in a derived class, closes this stream and the underlying stream.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">A call is made to write more output after Close has been called or the result of this call is an invalid XML document. </exception>
         </member>
         <member name="M:Microsoft.OData.Core.Atom.DefaultNamespaceCompensatingXmlWriter.WriteBinHex(System.Byte[],System.Int32,System.Int32)">
             <summary>
@@ -12317,6 +12328,12 @@
         </member>
         <member name="F:Microsoft.OData.Core.ExceptionUtils.OutOfMemoryType">
             <summary>Type of OutOfMemoryException.</summary>
+        </member>
+        <member name="F:Microsoft.OData.Core.ExceptionUtils.StackOverflowType">
+            <summary>Type of StackOverflowException.</summary>
+        </member>
+        <member name="F:Microsoft.OData.Core.ExceptionUtils.ThreadAbortType">
+            <summary>Type of ThreadAbortException.</summary>
         </member>
         <member name="M:Microsoft.OData.Core.ExceptionUtils.IsCatchableExceptionType(System.Exception)">
             <summary>
@@ -49894,12 +49911,12 @@
         </member>
         <member name="F:Microsoft.OData.Core.PlatformHelper.UriSchemeHttp">
             <summary>
-            Replacement for Uri.UriSchemeHttp, which does not exist on.
+            Use this instead of Uri.UriSchemeHttp.
             </summary>
         </member>
         <member name="F:Microsoft.OData.Core.PlatformHelper.UriSchemeHttps">
             <summary>
-            Replacement for Uri.UriSchemeHttps, which does not exist on.
+            Use this instead of Uri.UriSchemeHttps.
             </summary>
         </member>
         <member name="M:Microsoft.OData.Core.PlatformHelper.GetAssembly(System.Type)">
@@ -50181,14 +50198,6 @@
             <param name="type">Type on which to call this helper method.</param>
             <returns>All types nested in the current type</returns>
         </member>
-        <member name="M:Microsoft.OData.Core.PlatformHelper.CheckTypeArgs(System.Reflection.ConstructorInfo,System.Type[])">
-            <summary>
-            Checks if the specified constructor takes arguments of the specified types.
-            </summary>
-            <param name="constructorInfo">ConstructorInfo on which to call this helper method.</param>
-            <param name="types">Array of type arguments to check against the constructor parameters.</param>
-            <returns>True if the constructor takes arguments of the specified types, otherwise false.</returns>
-        </member>
         <member name="M:Microsoft.OData.Core.PlatformHelper.CreateCompiled(System.String,System.Text.RegularExpressions.RegexOptions)">
             <summary>
             Creates a Compiled Regex expression
@@ -50211,6 +50220,22 @@
         </member>
         <member name="F:AssemblyRef.ProductPublicKeyToken">
             <summary>Dont know what this is</summary>
+        </member>
+        <member name="M:Microsoft.OData.Core.TextResDescriptionAttribute.#ctor(System.String)">
+            <summary>
+                Constructs a new sys description.
+            </summary>
+            <param name='description'>
+                description text.
+            </param>
+        </member>
+        <member name="P:Microsoft.OData.Core.TextResDescriptionAttribute.Description">
+            <summary>
+                Retrieves the description text.
+            </summary>
+            <returns>
+                description
+            </returns>
         </member>
         <member name="T:Microsoft.OData.Core.TextRes">
              <summary>

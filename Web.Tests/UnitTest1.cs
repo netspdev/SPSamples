@@ -28,7 +28,7 @@ namespace Web.Tests
 
             //EmployeeDBContext context = new EmployeeDBContext();
 
-            Assert.AreEqual(true, controller.GetEmployees().Count() > 0);
+            Assert.AreEqual(true, controller.Get().Count() > 0);
         }
     }
 }

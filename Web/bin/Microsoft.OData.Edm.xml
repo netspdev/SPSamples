@@ -4,6 +4,28 @@
         <name>Microsoft.OData.Edm</name>
     </assembly>
     <members>
+        <member name="T:Microsoft.OData.Edm.Csdl.EdmEnumValueParser">
+            <summary>
+            Internal parser to parse enum value in csdl.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.Edm.Csdl.EdmEnumValueParser.TryParseEnumMember(System.String,Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.EdmLocation,System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmEnumMember}@)">
+            <summary>
+            Try parse enum members specified in a string value from declared schema types
+            </summary>
+            <param name="value">Enum value string</param>
+            <param name="model">The model for resolving enum type.</param>
+            <param name="location">The location of the enum member in csdl</param>
+            <param name="result">Parsed enum members</param>
+            <returns>True for successfully parsed, false for failed</returns>
+        </member>
+        <member name="M:Microsoft.OData.Edm.Csdl.EdmEnumValueParser.IsEnumIntergeType(Microsoft.OData.Edm.IEdmEnumType)">
+            <summary>
+            Deterine if the underlying type of the enum type is interger type (byte, sbyte, int16, int32, int64).
+            </summary>
+            <param name="enumType">The enum type.</param>
+            <returns>True if the underlying type of enum type is integer type.</returns>
+        </member>
         <member name="T:Microsoft.OData.Edm.Csdl.Parsing.Ast.CsdlExpressionBase">
             <summary>
             Common base type for a CSDL expression.
@@ -390,6 +412,16 @@
             </summary>
             <returns>A string representation of the location.</returns>
         </member>
+        <member name="P:Microsoft.OData.Edm.Csdl.CsdlLocation.Source">
+            <summary>
+            Gets the source of the file.
+            </summary>
+            <remarks>
+            Value 'null' means the source is unknown.
+            Empty value means there is no source (e.g., constructed from in-memory string).
+            Non-empty value indicates there is a certain source.
+            </remarks>
+        </member>
         <member name="P:Microsoft.OData.Edm.Csdl.CsdlLocation.LineNumber">
             <summary>
             Gets the line number in the file.
@@ -472,11 +504,6 @@
         <member name="F:Microsoft.OData.Edm.Csdl.EdmValueParser.DayTimeDurationValidator">
             <summary>
             This pattern eliminates all durations with year or month fields, leaving only those with day, hour, minutes, and/or seconds fields
-            </summary>
-        </member>
-        <member name="F:Microsoft.OData.Edm.Csdl.EdmValueParser.IntegerTypeKind">
-            <summary>
-            The hash set of primitive type kinds that corresponds to an integer.
             </summary>
         </member>
         <member name="M:Microsoft.OData.Edm.Csdl.EdmValueParser.ParseDuration(System.String)">
@@ -575,15 +602,6 @@
             <param name="value">Input string</param>
             <param name="result">The TimeOfDay resulting from parsing the string value</param>
             <returns>true if the value was parsed successfully, false otherwise</returns>
-        </member>
-        <member name="M:Microsoft.OData.Edm.Csdl.EdmValueParser.TryParseEnumMember(System.String,System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmSchemaType},System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmEnumMember}@)">
-            <summary>
-            Try parse enum members specified in a string value from declared schema types
-            </summary>
-            <param name="value">Enum value string</param>
-            <param name="schemaTypes">Declared schema types</param>
-            <param name="result">Parsed enum members</param>
-            <returns>True for successfully parsed, false for failed</returns>
         </member>
         <member name="M:Microsoft.OData.Edm.Csdl.EdmValueParser.TryParseCharAsBinary(System.Char,System.Byte@)">
             <summary>
@@ -2260,7 +2278,7 @@
         <member name="M:Microsoft.OData.Edm.Csdl.SerializationExtensionMethods.SetNamespaceAlias(Microsoft.OData.Edm.IEdmModel,System.String,System.String)">
             <summary>
             Sets the serialization alias for a given namespace(including current model's schemas namespace-alias, and referenced models' schemas namespace-alias)
-            TODO challenh: REF make sure no duplicated alias.
+            TODO: REF make sure no duplicated alias.
             </summary>
             <param name="model">Model that will be serialized.</param>
             <param name="namespaceName">The namespace to set the alias for.</param>
@@ -2299,6 +2317,11 @@
         <member name="F:Microsoft.OData.Edm.Csdl.EdmxReader.ignoreUnexpectedAttributesAndElements">
             <summary>
             Ignore the unexpected attributes and elements.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Csdl.EdmxReader.source">
+            <summary>
+            Indicates where the document comes from.
             </summary>
         </member>
         <member name="M:Microsoft.OData.Edm.Csdl.EdmxReader.#ctor(System.Xml.XmlReader,System.Func{System.Uri,System.Xml.XmlReader})">
@@ -2428,7 +2451,7 @@
             </summary>
             <param name="edmxVersion">The edmxVersion out.</param>
             <param name="csdlModel">The CsdlModel out.</param>
-            <returns>Ture if succeeded.</returns>
+            <returns>True if succeeded.</returns>
         </member>
         <member name="M:Microsoft.OData.Edm.Csdl.EdmxReader.HasIntolerableError">
             <summary>
@@ -2445,7 +2468,7 @@
         </member>
         <member name="M:Microsoft.OData.Edm.Csdl.EdmxReader.ParseReferenceElement">
             <summary>
-            TODO challenh: use XmlDocumentParser
+            TODO: use XmlDocumentParser
             </summary>
         </member>
         <member name="T:Microsoft.OData.Edm.Csdl.EdmxWriter">
@@ -2498,6 +2521,24 @@
             <returns>True if the delegate produced a desired <paramref name="objectInstance"/>.
             If delegate returns false, the default <see cref="T:Microsoft.OData.Edm.EdmToClrConversion.EdmToClrConverter"/> logic will be applied to create and populate a CLR object instance.</returns>
         </member>
+        <member name="T:Microsoft.OData.Edm.EdmToClrConversion.TryGetClrPropertyInfo">
+            <summary>
+            Represents a delegate to get property info of a CLR type based on the property name and <see cref="T:System.Type"/>.
+            </summary>
+            <param name="clrType">The CLR type which contains the property info.</param>
+            <param name="edmName">The property name which might be server side name or client side name.</param>
+            <param name="propertyInfo">The output parameter returning a PropertyInfo.</param>
+            <returns>True if the delegate find the property, else false.</returns>
+        </member>
+        <member name="T:Microsoft.OData.Edm.EdmToClrConversion.TryGetClrTypeName">
+            <summary>
+            Represents a delegate to get CLR type name based on the edm type name and <see cref="T:Microsoft.OData.Edm.IEdmModel"/>.
+            </summary>
+            <param name="edmModel">The <see cref="T:Microsoft.OData.Edm.IEdmModel"/> used to find the type name.</param>
+            <param name="edmTypeName">The edm type name.</param>
+            <param name="clrTypeName">The output parameter returning a CLR type name.</param>
+            <returns>True if the delegate find the type name, else false.</returns>
+        </member>
         <member name="T:Microsoft.OData.Edm.EdmToClrConversion.EdmToClrConverter">
             <summary>
             <see cref="T:Microsoft.OData.Edm.Values.IEdmValue"/> to CLR value converter.
@@ -2513,6 +2554,14 @@
             Initializes a new instance of the <see cref="T:Microsoft.OData.Edm.EdmToClrConversion.EdmToClrConverter"/> class.
             </summary>
             <param name="tryCreateObjectInstanceDelegate">The delegate customizing conversion of structured values.</param>
+        </member>
+        <member name="M:Microsoft.OData.Edm.EdmToClrConversion.EdmToClrConverter.#ctor(Microsoft.OData.Edm.EdmToClrConversion.TryCreateObjectInstance,Microsoft.OData.Edm.EdmToClrConversion.TryGetClrPropertyInfo,Microsoft.OData.Edm.EdmToClrConversion.TryGetClrTypeName)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.OData.Edm.EdmToClrConversion.EdmToClrConverter"/> class.
+            </summary>
+            <param name="tryCreateObjectInstanceDelegate">The delegate customizing conversion of structured values.</param>
+            <param name="tryGetClrPropertyInfoDelegate">The delegate customizing the behavior to get client CLR property info</param>
+            <param name="tryGetClrTypeNameDelegate">The delegate customizing the behavior to get client CLR type name</param>
         </member>
         <member name="M:Microsoft.OData.Edm.EdmToClrConversion.EdmToClrConverter.AsClrValue``1(Microsoft.OData.Edm.Values.IEdmValue)">
             <summary>
@@ -2715,6 +2764,11 @@
             <param name="edmValue">The EDM value.</param>
             <returns>The EDM value interface name.</returns>
         </member>
+        <member name="P:Microsoft.OData.Edm.EdmToClrConversion.EdmToClrConverter.TryGetClrTypeNameDelegate">
+            <summary>
+            The delegate to get the CLR type name.
+            </summary>
+        </member>
         <member name="T:Microsoft.OData.Edm.EdmToClrConversion.EdmToClrConverter.CastHelper">
             <summary>
             The class contains method that are called thru reflection to produce values of correct CLR types.
@@ -2745,6 +2799,16 @@
             <param name="builtInFunctions">Builtin functions dictionary to the evaluators for the functions.</param>
             <param name="lastChanceOperationApplier">Function to call to evaluate an application of a function with no static binding.</param>
         </member>
+        <member name="M:Microsoft.OData.Edm.Evaluation.EdmExpressionEvaluator.#ctor(System.Collections.Generic.IDictionary{Microsoft.OData.Edm.IEdmOperation,System.Func{Microsoft.OData.Edm.Values.IEdmValue[],Microsoft.OData.Edm.Values.IEdmValue}},System.Func{System.String,Microsoft.OData.Edm.Values.IEdmValue[],Microsoft.OData.Edm.Values.IEdmValue},System.Func{Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.IEdmType,System.String,System.String,Microsoft.OData.Edm.Expressions.IEdmExpression},System.Func{Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.IEdmType,System.String,System.String,System.String,Microsoft.OData.Edm.Expressions.IEdmExpression},Microsoft.OData.Edm.IEdmModel)">
+            <summary>
+            Initializes a new instance of the EdmExpressionEvaluator class.
+            </summary>
+            <param name="builtInFunctions">Builtin functions dictionary to the evaluators for the functions.</param>
+            <param name="lastChanceOperationApplier">Function to call to evaluate an application of a function with no static binding.</param>
+            <param name="getAnnotationExpressionForType">Function to get the <see cref="T:Microsoft.OData.Edm.Expressions.IEdmExpression"/> of an annotation of an <see cref="T:Microsoft.OData.Edm.IEdmType"/>.</param>
+            <param name="getAnnotationExpressionForProperty">Function to get the <see cref="T:Microsoft.OData.Edm.Expressions.IEdmExpression"/> of an annotation of a property or navigation property in <see cref="T:Microsoft.OData.Edm.IEdmType"/>.</param>
+            <param name="edmModel">The edm model.</param>
+        </member>
         <member name="M:Microsoft.OData.Edm.Evaluation.EdmExpressionEvaluator.Evaluate(Microsoft.OData.Edm.Expressions.IEdmExpression)">
             <summary>
             Evaluates an expression with no value context.
@@ -2768,6 +2832,19 @@
             <param name="context">Value to use as context in evaluating the expression. Cannot be null if the expression contains paths.</param>
             <param name="targetType">Type to which the result value is expected to conform.</param>
             <returns>The value that results from evaluating the expression in the context of the supplied value, asserted to be of the target type.</returns>
+        </member>
+        <member name="M:Microsoft.OData.Edm.Evaluation.EdmExpressionEvaluator.FindEdmType(System.String,Microsoft.OData.Edm.IEdmModel)">
+            <summary>
+            Get the <see cref="T:Microsoft.OData.Edm.IEdmType"/> of a specified edm type name from an <see cref="T:Microsoft.OData.Edm.IEdmModel"/>.
+            </summary>
+            <param name="edmTypeName">The specified edm type name.</param>
+            <param name="edmModel">The edm model.</param>
+            <returns>The requested type, or null if no such type exists.</returns>
+        </member>
+        <member name="P:Microsoft.OData.Edm.Evaluation.EdmExpressionEvaluator.ResolveTypeFromName">
+            <summary>
+            Function used to get edm type based on <see cref="T:Microsoft.OData.Edm.IEdmModel"/> and the type name.
+            </summary>
         </member>
         <member name="T:Microsoft.OData.Edm.Values.IEdmDelayedValue">
             <summary>
@@ -2812,6 +2889,16 @@
             <param name="builtInFunctions">Builtin functions dictionary to the evaluators for the functions.</param>
             <param name="lastChanceOperationApplier">Function to call to evaluate an application of a function with no static binding.</param>
         </member>
+        <member name="M:Microsoft.OData.Edm.Evaluation.EdmToClrEvaluator.#ctor(System.Collections.Generic.IDictionary{Microsoft.OData.Edm.IEdmOperation,System.Func{Microsoft.OData.Edm.Values.IEdmValue[],Microsoft.OData.Edm.Values.IEdmValue}},System.Func{System.String,Microsoft.OData.Edm.Values.IEdmValue[],Microsoft.OData.Edm.Values.IEdmValue},System.Func{Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.IEdmType,System.String,System.String,Microsoft.OData.Edm.Expressions.IEdmExpression},System.Func{Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.IEdmType,System.String,System.String,System.String,Microsoft.OData.Edm.Expressions.IEdmExpression},Microsoft.OData.Edm.IEdmModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.OData.Edm.Evaluation.EdmToClrEvaluator"/> class.
+            </summary>
+            <param name="builtInFunctions">Builtin functions dictionary to the evaluators for the functions.</param>
+            <param name="lastChanceOperationApplier">Function to call to evaluate an application of a function with no static binding.</param>
+            <param name="getAnnotationExpressionForType">Function to get the <see cref="T:Microsoft.OData.Edm.Expressions.IEdmExpression"/> of an annotation of an <see cref="T:Microsoft.OData.Edm.IEdmType"/>.</param>
+            <param name="getAnnotationExpressionForProperty">Function to get the <see cref="T:Microsoft.OData.Edm.Expressions.IEdmExpression"/> of an annotation of a property or navigation property in <see cref="T:Microsoft.OData.Edm.IEdmType"/>.</param>
+            <param name="edmModel">The edm model.</param>
+        </member>
         <member name="M:Microsoft.OData.Edm.Evaluation.EdmToClrEvaluator.EvaluateToClrValue``1(Microsoft.OData.Edm.Expressions.IEdmExpression)">
             <summary>
             Evaluates an expression with no value context.
@@ -2838,6 +2925,14 @@
             <param name="context">Value to use as context in evaluating the expression.</param>
             <param name="targetType">Type to which the result value is expected to conform.</param>
             <returns>The value that results from evaluating the expression in the context of the supplied value, asserted to be of the targetType.</returns>
+        </member>
+        <member name="M:Microsoft.OData.Edm.Evaluation.EdmToClrEvaluator.ResolveEdmTypeFromName(System.String,Microsoft.OData.Edm.IEdmModel)">
+            <summary>
+            Find the Edm type from an <see cref="T:Microsoft.OData.Edm.IEdmModel"/> by edm type name.
+            </summary>
+            <param name="edmTypeName">The edm type name.</param>
+            <param name="edmModel">The edm model.</param>
+            <returns>If the <see cref="T:Microsoft.OData.Edm.IEdmType"/> exists, return it. Or return false.</returns>
         </member>
         <member name="P:Microsoft.OData.Edm.Evaluation.EdmToClrEvaluator.EdmToClrConverter">
             <summary>
@@ -3461,7 +3556,7 @@
             </summary>
             <param name="property">The navigation property.</param>
             <returns>The entity set that the navigation propertion targets, or null if no such entity set exists.</returns>
-            TODO fareast\michdai: change null logic to using UnknownEntitySet
+            TODO: change null logic to using UnknownEntitySet
         </member>
         <member name="P:Microsoft.OData.Edm.Library.EdmUnknownEntitySet.Path">
             <summary>
@@ -4564,6 +4659,32 @@
             Parse Capabilities Vocabulary Model from CapabilitiesVocabularies.xml
             </summary>
         </member>
+        <member name="T:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyConstants">
+            <summary>
+            Constant values for Alternate Keys Vocabularies
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyConstants.AlternateKeys">
+            <summary>OData.Community.Keys.V1.AlternateKeys </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyConstants.AlternateKeyTypeKeyPropertyName">
+            <summary>OData.Community.Keys.V1.AlternateKey.Key </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyConstants.PropertyRefTypeNamePropertyName">
+            <summary>OData.Community.Keys.V1.PropertyRef.Name </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyConstants.PropertyRefTypeAliasPropertyName">
+            <summary>OData.Community.Keys.V1.PropertyRef.Alias </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyConstants.AlternateKeyType">
+            <summary>OData.Community.Keys.V1.AlternateKey </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyConstants.PropertyRefType">
+            <summary>OData.Community.Keys.V1.PropertyRef </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyConstants.VocabularyUrlSuffix">
+            <summary>OData.Community.Keys.V1 file suffix</summary>
+        </member>
         <member name="T:Microsoft.OData.Edm.Vocabularies.V1.CoreVocabularyConstants">
             <summary>
             Constant values for Core Vocabulary
@@ -4616,6 +4737,36 @@
         </member>
         <member name="F:Microsoft.OData.Edm.Vocabularies.V1.CoreVocabularyConstants.VocabularyUrlSuffix">
             <summary>Org.OData.Core.V1.xml file suffix</summary>
+        </member>
+        <member name="T:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyModel">
+            <summary>
+            Representing Alternate Keys Vocabulary Model.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyModel.Instance">
+            <summary>
+            The EDM model with Alternate Keys vocabularies.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyModel.AlternateKeysTerm">
+            <summary>
+            The Alternate Keys term.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyModel.AlternateKeyType">
+            <summary>
+            The AlternateKey ComplexType.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyModel.PropertyRefType">
+            <summary>
+            The PropertyRef ComplexType.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.Edm.Vocabularies.Community.V1.AlternateKeysVocabularyModel.#cctor">
+            <summary>
+            Parse Alternate Keys Vocabulary Model from AlternateKeysVocabularies.xml
+            </summary>
         </member>
         <member name="T:Microsoft.OData.Edm.Vocabularies.V1.CoreVocabularyModel">
             <summary>
@@ -7663,6 +7814,22 @@
             <param name="type">Reference to the calling object.</param>
             <returns>Key of this type.</returns>
         </member>
+        <member name="M:Microsoft.OData.Edm.ExtensionMethods.GetAlternateKeysAnnotation(Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.IEdmEntityType)">
+            <summary>
+            Gets the declared alternate keys of the most defined entity with a declared key present.
+            </summary>
+            <param name="model">The model to be used.</param>
+            <param name="type">Reference to the calling object.</param>
+            <returns>Alternate Keys of this type.</returns>
+        </member>
+        <member name="M:Microsoft.OData.Edm.ExtensionMethods.AddAlternateKeyAnnotation(Microsoft.OData.Edm.Library.EdmModel,Microsoft.OData.Edm.IEdmEntityType,System.Collections.Generic.IDictionary{System.String,Microsoft.OData.Edm.IEdmProperty})">
+            <summary>
+            Adds the alternate keys to this entity type.
+            </summary>
+            <param name="model">The model to be used.</param>
+            <param name="type">Reference to the calling object.</param>
+            <param name="alternateKey">Dictionary of alias and structural properties for the alternate key.</param>
+        </member>
         <member name="M:Microsoft.OData.Edm.ExtensionMethods.HasDeclaredKeyProperty(Microsoft.OData.Edm.IEdmEntityType,Microsoft.OData.Edm.IEdmProperty)">
             <summary>
             Checks whether the given entity type has the <paramref name="property"/> as one of the key properties.
@@ -8031,6 +8198,14 @@
             <param name="model">The model involved.</param>
             <param name="fullTypeName">The full type name of a type definition.</param>
             <param name="converter">The primitive value converter for the type definition.</param>
+        </member>
+        <member name="M:Microsoft.OData.Edm.ExtensionMethods.GetDeclaredAlternateKeysForType(Microsoft.OData.Edm.IEdmEntityType,Microsoft.OData.Edm.IEdmModel)">
+            <summary>
+            Gets the declared alternate keys of the most defined entity with a declared key present.
+            </summary>
+            <param name="type">Reference to the calling object.</param>
+            <param name="model">The model to be used.</param>
+            <returns>Alternate Keys of this type.</returns>
         </member>
         <member name="M:Microsoft.OData.Edm.ExtensionMethods.FindInContainerAndExtendsRecursively``1(Microsoft.OData.Edm.IEdmEntityContainer,System.String,System.Func{Microsoft.OData.Edm.IEdmEntityContainer,System.String,``0},System.Int32)">
             <summary>
@@ -12467,6 +12642,13 @@
             <param name="parameterTypes">The parameter types.</param>
             <returns>Returns True if found.</returns>
         </member>
+        <member name="M:Microsoft.OData.Edm.PlatformHelper.GetMethods(System.Type)">
+            <summary>
+            Gets all methods on the specified type.
+            </summary>
+            <param name="type">Type on which to call this helper method.</param>
+            <returns>Enumerable of all methods for the specified type.</returns>
+        </member>
         <member name="M:Microsoft.OData.Edm.PlatformHelper.GetMethod(System.Type,System.String,System.Boolean,System.Boolean)">
             <summary>
             Gets a method on the specified type.
@@ -12528,7 +12710,7 @@
             <summary>ProductPublicKey is an official MS supported public key for external releases.</summary>
         </member>
         <member name="F:AssemblyRef.TestPublicKey">
-            <summary>TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+            <summary>TestPublicKey is an unsupported strong key for testing purpose only.</summary>
         </member>
         <member name="F:AssemblyRef.ProductPublicKeyToken">
             <summary>Dont know what this is</summary>
@@ -12892,7 +13074,7 @@
         </member>
         <member name="M:Microsoft.OData.Edm.Strings.EdmModel_Validator_Semantic_DeclaringTypeMustBeCorrect(System.Object)">
             <summary>
-            A string like "The property '{0}' cannot belong to a type other than its declaring type. "
+            A string like "The property '{0}' cannot belong to a type other than its declaring type."
             </summary>
         </member>
         <member name="M:Microsoft.OData.Edm.Strings.EdmModel_Validator_Semantic_InaccessibleType(System.Object)">
@@ -13027,7 +13209,7 @@
         </member>
         <member name="M:Microsoft.OData.Edm.Strings.EdmModel_Validator_Semantic_NavigationMappingMustBeBidirectional(System.Object,System.Object)">
             <summary>
-            A string like "The binding of the entity set or singleton '{0}' on navigation property '{1}' is invalid, the binding of bidirectional navigation property must be bidirectional if specified. "
+            A string like "The binding of the entity set or singleton '{0}' on navigation property '{1}' is invalid, the binding of bidirectional navigation property must be bidirectional if specified."
             </summary>
         </member>
         <member name="M:Microsoft.OData.Edm.Strings.EdmModel_Validator_Semantic_EntitySetCanOnlyBeContainedByASingleNavigationProperty(System.Object)">
@@ -13047,7 +13229,7 @@
         </member>
         <member name="M:Microsoft.OData.Edm.Strings.EdmModel_Validator_Semantic_EnumMustHaveIntegralUnderlyingType(System.Object)">
             <summary>
-            A string like "The underlying type of '{0}' is not valid. The underlying type of an enum type must be an integral type. "
+            A string like "The underlying type of '{0}' is not valid. The underlying type of an enum type must be an integral type."
             </summary>
         </member>
         <member name="M:Microsoft.OData.Edm.Strings.EdmModel_Validator_Semantic_InaccessibleTerm(System.Object)">
@@ -13357,7 +13539,7 @@
         </member>
         <member name="M:Microsoft.OData.Edm.Strings.ValueParser_InvalidFloatingPoint(System.Object)">
             <summary>
-            A string like "The value '{0}' is not a valid floating point value. "
+            A string like "The value '{0}' is not a valid floating point value."
             </summary>
         </member>
         <member name="M:Microsoft.OData.Edm.Strings.ValueParser_InvalidMaxLength(System.Object)">
@@ -13377,7 +13559,7 @@
         </member>
         <member name="M:Microsoft.OData.Edm.Strings.ValueParser_InvalidGuid(System.Object)">
             <summary>
-            A string like "The value '{0}' is not a valid Guid. "
+            A string like "The value '{0}' is not a valid Guid."
             </summary>
         </member>
         <member name="M:Microsoft.OData.Edm.Strings.ValueParser_InvalidDecimal(System.Object)">
@@ -13680,6 +13862,21 @@
             A string like "Path segments must not contain '/' character."
             </summary>
         </member>
+        <member name="P:Microsoft.OData.Edm.Strings.EdmType_UnexpectedEdmType">
+            <summary>
+            A string like "Unexpected Edm type."
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.Edm.Strings.Edm_Evaluator_NoContextPath">
+            <summary>
+            A string like "A containing object cannot be null when getting value of an annotation with Path in the execution environment."
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.Edm.Strings.Edm_Evaluator_TypeCastNeedsEdmModel">
+            <summary>
+            A string like "An edm model must be provided for type cast."
+            </summary>
+        </member>
         <member name="P:Microsoft.OData.Edm.Strings.EdmModel_Validator_Semantic_InvalidOperationMultipleEndsInAssociation">
             <summary>
             A string like "An on delete action can only be specified on one end of an association."
@@ -13937,7 +14134,7 @@
         </member>
         <member name="M:Microsoft.OData.Edm.Error.NotImplemented">
             <summary>
-            The exception that is thrown when the author has yet to implement the logic at this point in the program. This can act as an exception based TODO tag.
+            The exception that is thrown when the author has not yet implemented the logic at this point in the program. This can act as an exception based TODO tag.
             </summary>
         </member>
         <member name="M:Microsoft.OData.Edm.Error.NotSupported">

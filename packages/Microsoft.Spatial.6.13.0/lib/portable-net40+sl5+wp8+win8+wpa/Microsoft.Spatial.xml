@@ -257,6 +257,13 @@
             <param name="parameterTypes">The parameter types.</param>
             <returns>Returns True if found.</returns>
         </member>
+        <member name="M:Microsoft.Spatial.PlatformHelper.GetMethods(System.Type)">
+            <summary>
+            Gets all methods on the specified type.
+            </summary>
+            <param name="type">Type on which to call this helper method.</param>
+            <returns>Enumerable of all methods for the specified type.</returns>
+        </member>
         <member name="M:Microsoft.Spatial.PlatformHelper.GetMethod(System.Type,System.String,System.Boolean,System.Boolean)">
             <summary>
             Gets a method on the specified type.
@@ -6738,7 +6745,7 @@
             <summary>ProductPublicKey is an official MS supported public key for external releases.</summary>
         </member>
         <member name="F:AssemblyRef.TestPublicKey">
-            <summary>TestPublicKey is an unsupported strong key for testing and internal use only</summary>
+            <summary>TestPublicKey is an unsupported strong key for testing purpose only.</summary>
         </member>
         <member name="F:AssemblyRef.ProductPublicKeyToken">
             <summary>Dont know what this is</summary>
@@ -6977,7 +6984,7 @@
         </member>
         <member name="M:Microsoft.Spatial.Error.NotImplemented">
             <summary>
-            The exception that is thrown when the author has yet to implement the logic at this point in the program. This can act as an exception based TODO tag.
+            The exception that is thrown when the author has not yet implemented the logic at this point in the program. This can act as an exception based TODO tag.
             </summary>
         </member>
         <member name="M:Microsoft.Spatial.Error.NotSupported">

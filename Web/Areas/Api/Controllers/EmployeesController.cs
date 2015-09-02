@@ -5,12 +5,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.OData;
+using System.Web.OData.Routing;
 
 namespace Web.Areas.Api.Controllers
 {
     //[Authorize]
     [System.Web.Mvc.RoutePrefix("/")]
-    public class EmployeesController : ApiController
+    [ODataRoutePrefix("Employees")]
+    public class EmployeesController : ODataController
     {
         private IEmployeeRepository _context;
         public EmployeesController(IEmployeeRepository employeeService)
@@ -18,7 +21,8 @@ namespace Web.Areas.Api.Controllers
             this._context = employeeService;
         }
 
-        public IQueryable<Employee> GetEmployees(long id = 0)
+        [EnableQuery(PageSize = 2)]
+        public IQueryable<Employee> Get(long id = 0)
         {
             if (id == 0)
                 return this._context.GetEmployees();

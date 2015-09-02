@@ -201,6 +201,7 @@ D:\Personal\My Samples\UseThis\MySamples\Web\bin\Autofac.Configuration.dll
 D:\Personal\My Samples\UseThis\MySamples\Web\bin\Autofac.Integration.WebApi.dll
 D:\Personal\My Samples\UseThis\MySamples\Web\bin\Autofac.Configuration.xml
 D:\Personal\My Samples\UseThis\MySamples\Web\bin\Autofac.Integration.WebApi.xml
+D:\Personal\My Samples\UseThis\SPSamples\Web\bin\AutoMapper.Net4.dll
 D:\Personal\My Samples\UseThis\SPSamples\Web\bin\MRLib\HiveDriver.exe
 D:\Personal\My Samples\UseThis\SPSamples\Web\bin\MRLib\Microsoft.Hadoop.CombineDriver.exe
 D:\Personal\My Samples\UseThis\SPSamples\Web\bin\MRLib\Microsoft.Hadoop.MapDriver.exe
